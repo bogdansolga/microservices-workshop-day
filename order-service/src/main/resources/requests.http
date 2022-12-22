@@ -6,11 +6,11 @@ Content-Type: application/json
   "orderItems": [
     {
       "price": 350,
-      "name": "Another flight ticket to somewhere else"
+      "name": "Another flight ticket"
     },
     {
       "price": 250,
-      "name": "Another hotel ticket somewhere else 2"
+      "name": "Another hotel ticket"
     }
   ]
 }

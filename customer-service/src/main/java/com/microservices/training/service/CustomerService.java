@@ -28,14 +28,18 @@ public class CustomerService {
 
     @Transactional(propagation = Propagation.REQUIRED)
     public void requestCredit(RequestCreditCommand requestCreditCommand) {
+        final int orderId = requestCreditCommand.getCreateOrder()
+                                                .getOrderId();
+        LOGGER.info("Processing a RequestCredit command for the order with the ID {}...", orderId);
+
         final int customerId = requestCreditCommand.getCreateOrder()
                                                    .getCustomerId();
         LOGGER.info("Requesting a credit for the customer with the ID {}...", customerId);
         Customer customer = getCustomerOrThrow(customerId);
         LOGGER.info("The customer with the ID {} is '{}'", customerId, customer.getName());
 
-        outboundMessagingAdapter.publishRequestCreditResponse(new RequestCreditResponse(true));
-        LOGGER.info("The RequestCreditResponse message was published");
+        outboundMessagingAdapter.publishRequestCreditResponse(new RequestCreditResponse(orderId, true));
+        LOGGER.info("The RequestCredit response for the orderId {} was published", orderId);
     }
 
     private Customer getCustomerOrThrow(int customerId) {

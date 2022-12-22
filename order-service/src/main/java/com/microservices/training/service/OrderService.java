@@ -5,6 +5,7 @@ import com.microservices.training.domain.entity.OrderItem;
 import com.microservices.training.domain.repository.OrderRepository;
 import com.microservices.training.dto.CreateOrderDTO;
 import com.microservices.training.dto.OrderItemDTO;
+import com.microservices.training.message.RequestCreditResponse;
 import com.microservices.training.outbound.OutboundMessagingAdapter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,16 +40,28 @@ public class OrderService {
         Order order = new Order(createOrderDTO.getCustomerId(), "A first order");
         order.setOrderItems(convertDTOs(orderItemsDTOs, order));
 
-        orderRepository.save(order);
-        LOGGER.info("The order was saved");
+        final Order createdOrder = orderRepository.save(order);
+        final int createdOrderId = createdOrder.getId();
+        LOGGER.info("The order was saved, it has the ID {}", createdOrderId);
+        createOrderDTO.setOrderId(createdOrderId);
 
         outboundMessagingAdapter.publishRequestCreditCommand(createOrderDTO);
-        LOGGER.info("The RequestCredit command was published");
+        LOGGER.info("The RequestCredit command for the orderId {} was published", createdOrderId);
     }
 
     private List<OrderItem> convertDTOs(List<OrderItemDTO> orderItemsDTOs, Order order) {
         return orderItemsDTOs.stream()
                              .map(item -> new OrderItem(item.getName(), item.getPrice(), order))
                              .collect(Collectors.toList());
+    }
+
+    public void handleRequestCreditResponse(RequestCreditResponse requestCreditResponse) {
+        final int orderId = requestCreditResponse.getOrderId();
+        LOGGER.info("Handling a RequestCredit response for the orderId {}...", orderId);
+
+        // TODO perform magic in here
+
+        LOGGER.info("The response processing was completed, publishing a RequestPayment command...");
+        //TODO implement the sending of the RequestPayment command
     }
 }

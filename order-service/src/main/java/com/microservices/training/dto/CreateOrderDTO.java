@@ -9,6 +9,8 @@ public class CreateOrderDTO implements Serializable {
 
     private List<OrderItemDTO> orderItems;
 
+    private int orderId;
+
     public int getCustomerId() {
         return customerId;
     }
@@ -23,5 +25,13 @@ public class CreateOrderDTO implements Serializable {
 
     public void setOrderItems(List<OrderItemDTO> orderItems) {
         this.orderItems = orderItems;
+    }
+
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 }

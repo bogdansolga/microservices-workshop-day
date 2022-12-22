@@ -16,8 +16,6 @@ public class CustomerServiceMain {
 
 	@Bean
 	ApplicationRunner applicationRunner(CustomerRepository customerRepository) {
-		return args -> {
-			customerRepository.save(new Customer(15, "John Doe"));
-		};
+		return args -> customerRepository.save(new Customer(15, "John Doe"));
 	}
 }
