@@ -1,0 +1,16 @@
+POST localhost:8080/order
+Content-Type: application/json
+
+{
+  "customerId": 15,
+  "orderItems": [
+    {
+      "price": 250,
+      "name": "Flight ticket"
+    },
+    {
+      "price": 150,
+      "name": "Hotel ticket"
+    }
+  ]
+}
