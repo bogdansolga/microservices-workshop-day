@@ -2,15 +2,15 @@ POST localhost:8080/order
 Content-Type: application/json
 
 {
-  "customerId": 15,
+  "customerId": 25,
   "orderItems": [
     {
-      "price": 250,
-      "name": "Flight ticket"
+      "price": 350,
+      "name": "Another flight ticket"
     },
     {
-      "price": 150,
-      "name": "Hotel ticket"
+      "price": 250,
+      "name": "Another hotel ticket"
     }
   ]
 }

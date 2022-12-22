@@ -21,10 +21,10 @@ public class OrderItem extends AbstractEntity {
     @SequenceGenerator(name = "order_item_sequence_generator", sequenceName = "order_item_sequence", allocationSize = 1)
     private int id;
 
-    @Column(name = "name", unique = true, nullable = false, insertable = true, updatable = false, length = 50)
+    @Column(name = "name", nullable = false, length = 50)
     private String name;
 
-    @Column(name = "price", unique = false, nullable = false, insertable = true, updatable = true, length = 10)
+    @Column(name = "price", nullable = false, length = 10)
     private double price;
 
     @ManyToOne(targetEntity = Order.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
