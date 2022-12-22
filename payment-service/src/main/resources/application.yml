@@ -1,0 +1,31 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: 'payment-service'
+
+  jackson:
+    serialization:
+      indent_output: true
+    default-property-inclusion: non_null
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    name: payment_service
+    password: payment_service_admin
+    username: payment_service_admin
+    url: jdbc:postgresql://localhost:5432/${spring.datasource.name}
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        show_sql: false
+        format_sql: true
+
+    open-in-view: false
+
+  kafka:
+    bootstrap-servers: localhost:9092
