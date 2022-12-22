@@ -21,8 +21,8 @@ GRANT ALL PRIVILEGES ON DATABASE order_service TO order_service_admin;
     ./bin/kafka-server-start.sh config/server.properties
 
 * Win: 
-    bin\windows\zookeeper-server-start.bat config\zookeeper.properties
-    bin\windows\kafka-server-start.bat config\zookeeper.properties
+    .\bin\windows\zookeeper-server-start.bat config\zookeeper.properties
+    .\bin\windows\kafka-server-start.bat config\zookeeper.properties
 ```
 
 ### Kafka topics creation
@@ -34,8 +34,8 @@ GRANT ALL PRIVILEGES ON DATABASE order_service TO order_service_admin;
     ./bin/kafka-topics.sh --create --topic request_payment_response --bootstrap-server localhost:9092
 
 * Windows:
-    bin\windows\kafka-topics.sh --create --topic request_credit           --bootstrap-server localhost:9092
-    bin\windows\kafka-topics.sh --create --topic request_credit_response  --bootstrap-server localhost:9092
-    bin\windows\kafka-topics.sh --create --topic request_payment          --bootstrap-server localhost:9092
-    bin\windows\kafka-topics.sh --create --topic request_payment_response --bootstrap-server localhost:9092
+    .\bin\windows\kafka-topics.bat --create --topic request_credit           --bootstrap-server localhost:9092
+    .\bin\windows\kafka-topics.bat --create --topic request_credit_response  --bootstrap-server localhost:9092
+    .\bin\windows\kafka-topics.bat --create --topic request_payment          --bootstrap-server localhost:9092
+    .\bin\windows\kafka-topics.bat --create --topic request_payment_response --bootstrap-server localhost:9092
 ```
